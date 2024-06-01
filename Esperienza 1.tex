@@ -1,0 +1,70 @@
+\begin{figure}
+    \centering
+    \begin{circuitikz}[american, voltage shift=0.5]
+    \draw
+    (0,0) to [voltage source,V=$V_g$,invert] (0,3)
+    to [R,l=$R_1$,v=$V_{R_1}$] (3,3)
+    to [R,l=$R_2$,v=$V_{R_2}$] (3,0) --(0,0);
+    \draw
+    (3,3) to [short] (5,3)
+    to [rmeterwa,t=V](5,0)--(3,0);
+    \draw
+    (0.5,3) to [short] (0.5,4.5)
+    to[rmeterwa,t=V] (2.5,4.5)--(2.5,3);  
+    \end{circuitikz}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{circuitikz}[american, voltage shift=0.5]
+    \draw
+    (0,0) to [voltage source,V=$V_g$,invert] (0,3)
+    to [R,l=$R_1$,v=$V_{R_1}$] (3,3)
+    to [R,l=$R_2$,v=$V_{R_2}$] (3,0) --(0,0);
+    \draw
+    (3,3) to [short] (5,3)
+    to [R,R=$R_V$](5,0)--(3,0);
+    \draw
+    (5,3) to [short](7,3)
+    to [rmeterwa,t=V](7,0)--(5,0);
+    \end{circuitikz}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{circuitikz}[american, voltage shift=0.5]
+    \draw
+    (0,0) to [voltage source,V=$V_g$,invert] (0,3)
+    to[rmeterwa,t=A](2,3)
+    to [R,l=$R_1+R_A\approx R_1$] (4,3)
+    to [R,l=$R_2$](4,0)--(0,0);
+    \draw
+    (4,3) to [short](6,3)
+    to [R,l=$R_V$] (6,0)--(4,0);
+    \draw
+    (6,3) to [short](8,3)
+    to[rmeterwa,t=$V$](8,0)--(6,0);
+    \end{circuitikz}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{circuitikz}[american, voltage shift=0.5]
+    \draw
+    (0,0) to [voltage source,V=$V_g$,invert] (0,3)
+    to [R,l=$R_1$](3,3)
+    to[rmeterwa,t=$V$](3,0)--(0,0);
+    \draw
+    (3,3) to[short] (5,3)
+    to [R,l=$R_V$](5,0)--(3,0);
+    \draw
+    (5,3) to [short](7,3)
+    to [R,l=$R_A+R_2$](7,1.5)
+    to [rmeterwa,t=A](7,0)--(5,0);
+    \end{circuitikz}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
