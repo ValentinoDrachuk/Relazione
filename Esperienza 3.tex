@@ -81,8 +81,9 @@ Si è poi ripetuta la misurazione con il diodo in reversed bias ovvero montato n
     \caption{Voltaggio ai capi del diodo e della resitenza in forward bias}
     \label{fig:raddrizzatore reverse}
 \end{figure}
-\subsubsection{3.3.3}
-Misure analoghe sono state svolte anche per tensioni di ingresso tirangolare. Il risultato di tali misure è riportato in figura \ref{}.
+\subsubsection{3.2.3}
+Misure analoghe sono state svolte anche per tensioni di ingresso ad onda triangolare. Il risultato di tali misure è riportato in figura \ref{Triangular input}.\\
+Il risulato è pressocchè analogo.
 \begin{figure}
     \centering
     \begin{minipage}{0.475\textwidth}
@@ -100,12 +101,32 @@ Misure analoghe sono state svolte anche per tensioni di ingresso tirangolare. Il
         \includegraphics[width=1\textwidth]{Diodo 3.2.3/Triang_V_R_Reverse.png}
     \end{minipage}
     \caption{Voltaggio ai capi di diodo e resistenza con voltaggio in ingresso pari ad un'onda triangolare }
-    \label{fig:enter-label}
+    \label{Triangular input}
+\end{figure}
+\subsubsection{3.2.4}
+In quest'attività si è studiato il comportamento del circuito mostrato in figura \ref{fig: Raddrizzatore} a destra.
+La differenza quindi con il circuito precedente è la presenza di un generatore di tensione costante a valle del diodo.\\
+L'aggiunta di questo generatore di tensione ha portato delle complicazioni sulla misurazione effettiva in laboratorio della tensione ai capi del diodo in quanto sia il generatore di tensione che l'oscilloscopio richiedono il collegamento a massa.\\
+Il risultato di tale misura è quello riportato in figura \ref{3.2.4}.
+\subsubsection{3.2.5}
+Esattamente come per il circuito precedente si è invertita la polarità del diodo e sono state riprese le misure e si sono quindi ottenuti i risultati in figura \ref{}
+\begin{figure}
+    \begin{minipage}{0.475\textwidth}
+        \includegraphics[width=1\textwidth]{Diodo 3.2.(4-5)/DC_V_D_Reverse.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.475\textwidth}
+        \includegraphics[width=1\textwidth]{Diodo 3.2.(4-5)/DC_V_R_Forward.png}
+    \end{minipage}
+    \label{3.2.5}
+    \caption{Voltaggio ai capi di diodo e resistenza con $V_DC$ in reversed bias}
 \end{figure}
 
 \begin{figure}
+    \centering
+\begin{minipage}{0.475\textwidth}
 \centering
-\begin{circuitikz}[american, voltage shift=0.5]
+\begin{circuitikz}[scale=0.7,american, voltage shift=0.5]
 \ctikzset{bipoles/oscope/waveform=sin}
     \draw
 (0,0)to [R,l_=$R$] (4,0)
@@ -116,12 +137,11 @@ Misure analoghe sono state svolte anche per tensioni di ingresso tirangolare. Il
     to [rmeterwa,t=V](6,-3)
     to [short,-](4,-3);
 \end{circuitikz}
-   \caption{Circuito raddrizzatore}
-    \label{fig: Raddrizzatore}
-\end{figure}
-\begin{figure}
+\end{minipage}
+\hfill
+\begin{minipage}{0.475\textwidth}
 \centering
-\begin{circuitikz}[american, voltage shift=0.5]
+\begin{circuitikz}[scale=0.7,american, voltage shift=0.5]
 \ctikzset{bipoles/oscope/waveform=sin}
     \draw
     (0,0)to [R,l_=$R$] (4,0)
@@ -134,9 +154,25 @@ Misure analoghe sono state svolte anche per tensioni di ingresso tirangolare. Il
     to [short,-](4,-3);
     \draw (5,0) to [open,v=$V_{out}$] (5,-3);
 \end{circuitikz}
-   \caption{Circuito raddrizzatore}
-    \label{fig: Raddrizzatore}
+\end{minipage}
+\caption{Circuito raddrizzatore con e senza $V_{DC}$}
+\label{fig: Raddrizzatore}
 \end{figure}
+\begin{figure}
+    \centering
+    \begin{minipage}{0.475\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{Diodo 3.2.(4-5)/DC_V_D_Forward.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.475\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{Diodo 3.2.(4-5)/DC_V_R_Forward.png}
+    \end{minipage}
+    \caption{Voltaggio ai capi del diodo e della resistenza con $V_{DC}$ in forward bias}
+    \label{3.2.4}
+\end{figure}
+
 \subsection{3.3}
 In quest'esperienza si verifica il corretto funzionamento di un alimentatore a semionda il cui schema circuitale è quello riportato in figura \ref{fig: Stabilizzatore}. Lo scopo del circuito è quello di raddrizzare una tensione sinusoidale ad un suo valor medio, per fare ciò si sfrutta il carattere non lineare del diodo e la scarica del condensatore.
 \subsubsection{3.3.1}
@@ -161,7 +197,7 @@ Si cerca quindi di stimare $V_{max}$, per fare ciò si considera il diodo in con
     to [short,-](4,-3);
 \end{circuitikz}
 \end{figure}
-Per il calcolo della tensione di Thevenin si utilizza il circuito in figura \ref{}
+Per il calcolo della tensione di Thevenin si utilizza il circuito in figura \ref{Thevenin equivalent} a destra.
 Si ha quindi:
 \begin{equation*}
     V_{max}-V_{\gamma}=R_g I+Z_C I\Longrightarrow I=\frac{V_{max}-V_{\gamma}}{R_g+Z_C}
@@ -170,7 +206,7 @@ Da cui:
 \begin{equation*}
     V_{th}=V_{max} - R_g I - V_{\gamma}\Longrightarrow V_{th}=\frac{Z_C}{Z_C+R_g}(V_{max} - V_{\gamma})
 \end{equation*}
-Per il calcolo dell'impedenza di Thevenin si utilizza il circuito in figura \ref{}
+Per il calcolo dell'impedenza di Thevenin si utilizza il circuito in figura \ref{Thevenin equivalent} a sinistra.
 \begin{figure}
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
@@ -184,13 +220,13 @@ Per il calcolo dell'impedenza di Thevenin si utilizza il circuito in figura \ref
             to [short,*-](4,-3);
         \end{circuitikz}
     \end{subfigure}
-    \hspace{2cm}
+    \hfill
     \begin{subfigure}[b]{0.4\textwidth}
         \begin{circuitikz}[american, voltage shift=0.5]
             \draw
             (0,0) to [R,l=$R_g$](2,0)
             to [battery2,v=$V_\gamma$] (4,0)
-            to [C,l=$Z_C$](4,-3)--(0,-3)
+            to [C,l_=$Z_C$](4,-3)--(0,-3)
             to [voltage source,v=$V_{max}$,invert](0,0);
             \draw
             (4,0) to [short,-*](5,0)
@@ -200,8 +236,7 @@ Per il calcolo dell'impedenza di Thevenin si utilizza il circuito in figura \ref
     \end{subfigure}
     \caption{Circuiti di Thevenin equivalenti}
     \centering
-    \caption{Caption}
-    \label{fig:enter-label}
+    \label{Thevenin equivalent}
 \end{figure}
 \begin{figure}
     \centering
@@ -211,14 +246,14 @@ Per il calcolo dell'impedenza di Thevenin si utilizza il circuito in figura \ref
             to [R,l=$R_L$](3,-3)--(0,-3)
             to [voltage source,v=$V_{th}$,invert] (0,0);
         \end{circuitikz}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{Circuito equivalente}
+    \label{Circuito equivalente}
 \end{figure}
 Da cui:
 \begin{equation*}
     Z_{th}=\frac{R_gZ_C}{R_g+Z_C}
 \end{equation*}
-Il circuito equivalente è pertanto quello in figura \ref{}
+Il circuito equivalente è pertanto quello in figura \ref{Circuito equivalente}
 Si trova quindi la tensione ai capi di $R_L$ che risulta essere pari a:
 \begin{equation}
     V_L=\frac{R_L}{Z_{th}+R_L}V_{th}
