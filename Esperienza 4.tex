@@ -1,0 +1,95 @@
+\section{Esperienza 4}
+\subsection{Esperienza 4.1}
+Con quest'esperienza si vuole analizzare il funzionamento di un transistor (in questo caso è stato scelto un NPN BC337) con funzione di interruttore in una configurazione ad emettitore comune. Come utilizzatore verrà utilizzato un diodo LED rosso in modo che si possa vedere in modo immediato il funzionamento del transistor. Per far lavorare il transistor come interruttore è necessario che quest'ultimo operi in regime di saturazione. Il circuito di riferimento è quello in figura \ref{Transistor1}
+\subsubsection{4.1.1}
+E' stato scelto di far circolare una corrente sul diodo $I_C=10\unit{\mA}$ e di applicare una tensione $V_C=10\unit{\V}$ e $V_B=5\unit{\V}$. Per dimensionare il circuito si è scritta l'equazione alla maglia del collettore e dell'emettitore:
+\begin{equation*}
+    V_C=R_C I_C + V_d +V_{CE}
+\end{equation*}
+Si risolve quindi per $R_C$ sostituendo $V_d=1.7V$ (caduta di tensione per un diodo LED rosso in conduzione) e $V_{CE}\approx 0V$($V_{CE}$ è praticamente trascurabile in saturazione rispetto le altre tensioni, come d'altronde si verifica anche controllando nel datasheet). Si trova pertanto:
+\begin{equation*}
+    R_C=\frac{V_C-V_d}{{I_C}}\approx 830\unit{\ohm}
+\end{equation*}
+Per dimensionare la resistenza di base si è poi considerata la maglia base-emettitore:
+\begin{equation*}
+    V_B=R_B I_B+V_{BE}
+\end{equation*}
+Da cui si trova $R_B$:
+\begin{equation*}
+    R_B=\frac{V_B-V_{BE}}{I_B} \approx 4.3 \unit{\kohm}
+\end{equation*}
+Ove è stato utilizzato $V_{BE}=0.7\unit{\V}$(preso dal datasheet) e $I_B=1\unit{\mA}$(anche questo valore preso dal datsheet)
+\subsubsection{4.1.2}
+Con i valori di resistenze trovate si è poi montato il circuito in figura \ref{Transistor1}. Per mancata disponibilità delle precise resistenze si è optato per una $R_B=820\unit{\ohm}=$ e una $R_C$ serie data da due resistenze una da $3900\unit{\ohm}$ e l'altra da $470\unit{\ohm}$. Si sono quindi misurati 
+\subsubsection{4.1.3}
+Si è verificato, staccando e riattacando il generatore di tensione $V_B$ dal resto del circuito, che effettivamente il transistor si comporta come un interruttore, è possibile quindi pensare che applicando una tensione PWM in base è possibile regolare la luminosità del LED, infatti, mandando in conduzione e spegnendo il LED ad una frequenza maggiore di quella percepibile dall'occhio umano($\approx 60\unit{\Hz}$) si percepisce un'intensità luminosa ridotta, il che non vuol dire che la corrente sul diodo è inferiore, bensì che l'azione dell'accendere e dello spegnere il diodo ad una frequenza più alta di quella percepibile rende un'intensità luminosa inferiore. E' stata quindi data un'onda quadra in base trai $0\unit{\V}$ e $5\unit{\V}$ ed è stato proprio osservato questo effetto.
+\begin{figure}
+    \centering
+    \begin{circuitikz}[american, voltage shift=0.5,transform shape]
+        \draw (3,3) node[npn,tr circle](t){};
+        \draw (0,0) to [voltage source,l=$V_B$,invert] (0,3)to[R,l=$R_B$,i=$I_B$](t.base);
+        \draw (t.collector) to [leDo,invert,i<^=$I_C$] ++(2,0) to [R,l=$R_C$]++(2,0) node[](p1){};
+        \draw (0,0) -- (0, 0-|p1.center) 
+        to [voltage source,l=$V_C$,invert](p1.center);
+        \draw (t.emitter) to[short] (0,0-|t.emitter) node[ground](){};
+        \draw (t.base) node[yshift=-3mm,xshift=-1mm](){B};
+        \draw (t.emitter) node[right](){E};
+        \draw (t.collector) node[above,left](){C};
+    \end{circuitikz}
+    \caption{Configurazione ad emettitore per un transistor}
+    \label{Transistor1}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{circuitikz}[american, voltage shift=0.5,transform shape]
+        \draw node[npn,tr circle](t){}(3,0);
+        \draw (t.base)--++(-1,0) to [R,l=$R_b$] ++(0,3)node[](p1){};
+        \draw (t.collector) to [R,l=$R_c$] (p1-|t.collector)node[](p2){};
+        \draw (p1.center) -- (p2.center) to [voltage source,l=$V_g$]++(2,0) node[ground](){};
+        \draw (t.collector) to [short,-*] ++(2,0)node[](p3){};
+        \draw (t.emitter) to ++(0,-1) node[ground](p4){}to[short,-*] (p4-|p3) to [open,v<=$V_{out}$](p3);
+        \draw (t.base) node[above,xshift=-1mm](){B};
+        \draw (t.collector) node[left](){C};
+        \draw (t.emitter) node[left](){E};
+    \end{circuitikz}
+    \caption{Circuito transistor a piccolo segnale}
+    \label{Transistor completo}
+\end{figure}
+\subsection{4.2}
+Con questa esperienza si è verificato il comportamento a piccoli segnali di un transistor BC337 in una configurazione ad emettitore comune. Per fare ciò si è suddiviso il dimensionamento in due parti: dimensionamento statico e dinamico. Il dimensionamento statico ha il compito di portare il punto di lavoro in zona attiva del transistor, il dimensionamento dinamico (possibile una volta svolto quello statico) permette di individuare i parametri ottimali per l'amplificazione di un piccolo segnale in ingresso. Il circuito che si è preso in considerazione è quello riportato in figura \ref{Transistor completo}.
+\subsubsection{4.2.1}
+Si inizi quindi con il dimensionamento statico del transistor, per fare ciò consideriamo $V_s(t)=0$, pertanto per questo tipo di analisi possiamo considerare il circuito in figura \ref{Transistor incompleto}. Si vuole stimare una $R_B$ in modo tale che il transistor lavori in regione attiva con un $V_g=12\unit{\V}$,$V_{CE}=6\unit{\V}$, $R_C=220\unit{\ohm}$. Per fare ciò si consideri la maglia collettore emettitore, si ha:
+\begin{equation*}
+    V_g=R_C I_C +V_{CE}
+\end{equation*}
+Da cui si ricava $I_C$:
+\begin{equation*}
+    I_C=\frac{V_g-V_{CE}}{R_C}=27\unit{\mA}
+\end{equation*}
+Si consideri ora la maglia base emettitore:
+\begin{equation*}
+    V_g=R_B I_B +V_{BE}
+\end{equation*}
+Da cui:
+\begin{equation*}
+    R_B=\frac{V_g-V_{BE}}{I_B}
+\end{equation*}
+\begin{figure}
+    \centering
+    \begin{circuitikz}[american, voltage shift=0.5,transform shape]
+        \draw node[npn,tr circle](t){}(3,0);
+        \draw (t.base)--++(-1,0)node[](p5){} to [R,l=$R_B$] ++(0,3)node[](p1){};
+        \draw (t.collector) to [R,l=$R_C$] (p1-|t.collector)node[](p2){};
+        \draw (p1.center) -- (p2.center) to [voltage source,l=$V_g$]++(2,0) node[ground](){};
+        \draw (t.collector) to [short,-*] ++(2,0)node[](p3){};
+        \draw (t.emitter) to ++(0,-2) node[ground](p4){}to[short,-*] (p4-|p3) to [open,v<=$V_{out}$](p3);
+        \draw (p5.center)to [C,l=$C$]++(-3,0)node[](p6){};
+        \draw (p6.center) to [R,l=$R_1$]++(-3,0)node[](p7){} to [voltage source, l_=$V_s(t)$] (p4-|p7)--(p4);
+        \draw (p6.center) to [R,l=$R_2$](p6|-p4);
+        \draw (t.base) node[above,xshift=-1mm](){B};
+        \draw (t.collector) node[left](){C};
+        \draw (t.emitter) node[left](){E};        
+    \end{circuitikz}
+    \caption{Caption}
+    \label{Transistor incompleto}
+\end{figure}

@@ -12,11 +12,11 @@
     (0,0) to [oscope,v_=$V_g$](0,-3);
 \end{circuitikz}
     \caption{Circuito}
-    \label{fig: Circuito}
+    \label{fig: Circuito RC}
 \end{figure}
 \section{Esperienza 2}
 In questa esperienza di laboratorio si è cercato di comprendere al meglio il comportamento di elementi passivi come condensatori e resistenze interfacciandosi con strumenti di laboratorio come generatori di funzione ed oscilloscopi.
-In particolare il circuito che maggiormente si è preso in esame è quello rappresentato nella figura \ref{fig: Circuito}.Si è inoltre cercato di capire l'errore che gli esperimenti di laboratorio portano a commettere se utilizzati inconsapevolmente.
+In particolare il circuito che maggiormente si è preso in esame è quello rappresentato nella figura \ref{fig: Circuito RC}.Si è inoltre cercato di capire l'errore che gli esperimenti di laboratorio portano a commettere se utilizzati inconsapevolmente.
 \subsection{2.1}
 Come prima esperienza si è cercato di stimare la costante di tempo $\tau$. Quest'ultima è definita a partire dalla risposta della differenza di potenziale ai capi della capacità. Questa costante può essere stimata sia durante la carica che la scarica del condensatore. Per simulare in laboratorio questo aspetto si è impostato il potenziale ai capi del genearatore come un onda quadra.
 \subsection{Scarica del consensatore $R=15k\Omega $ $C=1nF$}
@@ -53,6 +53,26 @@ Pertanto
 Eseguendo un fit dei dati tramite la relazione \ref{eq 1} si è ottenuta $\tau=18\unit{\us}$ che è all'interno del range della barra di errore.
 \subsection{2.1.3}
 Uno schema circuitale di questo tipo può essere adottato per eseguire semplici operazioni matematiche come l'integrazione e la derivazione.
+Ad esempio misurando la misurando la tensione ai capi di $R$ è possibile osservare il comportamento derivatore del circuito, mentre misurando la tensione ai capi di $C$ si osserva il comportamento integratore del circuito.
+Questo comportamento è stato osservato in laboratorio e i risultati sono stati riportati in figura \ref{fig:Derivatore e integratore}.
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{RC_derivatore.png}
+        \caption{Derivatore}
+        \label{fig:Derivatore}
+    \end{subfigure}%
+    \hfill % adds horizontal space between the figures
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{RC_integratore.png}
+        \caption{Integratore}
+        \label{fig:Integratore}
+    \end{subfigure}
+    \caption{Comportamento del circuito come derivatore e integratore}
+    \label{fig:Derivatore e integratore}
+\end{figure}
 \subsection{Scarica del consensatore $R=150$ \unit{\ohm} $C=100$\unit{\nF}}
 Si è poi ripetuta la medesima esperienza, utilizzando però diversi valori per capacità e resistenza. Si è scelto il valore di $150 $\unit{\ohm} per la resistenza poichè, così facendo, essa diventa comparabile con la resistenza interna dell'oscilloscopio, del valore nominale di $50$\unit{\ohm}. \\
 Nella prima parte dell'esperienza si è volutamente omessa questa considerazione poichè il rapporto $\frac{R_{g}}{R}$ è insignificante a tutti gli scopi pratici. 
@@ -114,3 +134,34 @@ Grazie all'ausilio del generatore d'onda quadra è stato possibile con una sola 
     \caption{Circuito}
     \label{fig: Circuito}
 \end{figure}
+\subsection{2.2}
+Con quest'esperienza si cerca di capire il comportamneto in frequenza di un circuito $RC$.\\
+In particolare si cerca di valutare il guadagno e lo sfasamento in funzione della frequenza.\\
+Si cerca pertanto di ricavare il digramma di Bode del circuito.\\
+\subsection{2.2.1 e 2.2.2}
+Si è quindi montato il circuito come in figura \ref{fig: Circuito RC} e si è impostato il generatore di funzioni in modo tale che la tensione in ingresso fosse un'onda sinusoidale con tensione $5V_{pp}$.\\
+Si è utilizzato $R=1.5$\unit{\kohm} e $C=1$\unit{\nF}.\\
+Si è quindi fatta variare la frequenza e misurata la tensione ai capi del condensatore, e lo sfasamento tra la tensione in ingresso e di uscita ed eseguito un plot del guadagno e dello sfasamento in funzione della frequenza.\\
+Il risultato ottenuto è riportato in figura \ref{fig: Guadagno RC}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{Guadagno_RC.png}
+    \caption{Guadagno RC}
+    \label{fig: Guadagno RC}
+\end{figure}
+\subsection{2.2.3}
+Abbiamo poi ripetuto le misure anche nel caso in cui $R=150$\unit{\ohm} e $C=100$\unit{\nF}.\\
+Qui si riscontra lo stesso problema che si era ottenuto nella sezione 2.1.3.\\
+E' stato quindi necessario considerare la resistenza interna dell'oscilloscopio.\\
+Il risultato ottenuto è riportato in figura \ref{fig: Guadagno RC 150}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{Guadagno_RC_150.png}
+    \caption{Guadagno RC}
+    \label{fig: Guadagno RC 150}
+\end{figure}
+\subsection{2.3}
+Si è quindi passati a studiare il circuito in figura \ref{fig: Circuito}.\\
+Si è passati quindi allo studio in frequenza di un circuito $RLC$\\
+\subsubsection{2.3.1}
+Come prima cosa si è cercato di valutare quali potessero essere i parametri caratteristici del circuito come $\alpha$ e la pulsazione di risonanza $\omega_0$.\\

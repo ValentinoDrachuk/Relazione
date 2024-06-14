@@ -176,6 +176,14 @@ Esattamente come per il circuito precedente si è invertita la polarità del dio
 \subsection{3.3}
 In quest'esperienza si verifica il corretto funzionamento di un alimentatore a semionda il cui schema circuitale è quello riportato in figura \ref{fig: Stabilizzatore}. Lo scopo del circuito è quello di raddrizzare una tensione sinusoidale ad un suo valor medio, per fare ciò si sfrutta il carattere non lineare del diodo e la scarica del condensatore.
 \subsubsection{3.3.1}
+Il circuito è essenzialmente composto da un diodo e un filtro RC.\\
+Lo scopo del circuito è quello di raddrizzare la tensione sinusoidale in ingresso e di mantenere un valore medio di tensione costante.\\
+Per farlo si sfrutta il fatto che il diodo non permette il passaggio di corrente in verso opposto e che il condensatore si carica e si scarica in base alla tensione ai suoi capi.\\
+In particolare, quando la tensione ai capi del condensatore è minore di quella in uscita dal generatore il diodo si polarizza direttamente e il condensatore si carica,
+mentre quando la tensione ai capi del condensatore è maggiore di quella in uscita dal generatore il diodo si polarizza inversamente e il condensatore si scarica.\\
+Si è quindi montato il circuito in figura \ref{fig: Stabilizzatore} con $C=10\unit{\nF},R_L=1\unit{\kohm}$ si è quindi variata la frequenza del generatore ($1\unit{\Hz},10\unit{Hz},100\unit{\Hz}$) e si è misurata la tensione ai capi del carico.\\
+Il risultato è quello riportato in figura \ref{3.3.1}.
+\subsubsection{3.3.1 (extra)}
 Quando si sono misurate le tensioni di ronzio si è notato che per basse resistenze di carico la curva teorica non corrispondeva alle tensioni di ronzio misurate. Questo è un comportamento che ci saremmo dovuti aspettare dato che l'espressione della tensione di ronzio è stata trovata per $R_L \xrightarrow{}+\infty$. Tuttavia, nelle misure $R_L\xrightarrow{}0$! Pertanto è necessario riformulare la formula considerando, date le basse resistenze in gioco, anche la resistenza del generatore. Un' altro problema è che la tensione massima vista dal carico per basse resistenze non è più quella erogata dal generatore in quanto a quest'ultima viene tagliato il picco di tensione dal circuito R-Diodo creatosi (L'impedenza della capacità è praticamente nulla ad 1\unit{\kHz}). Per stimare la tensione di ripple supponiamo che la scarica del condensatore avvenga in un periodo, si ha pertanto:
 \begin{equation}
     v_C(T)=V_{max}e^{-\frac{T}{\tau}}=V_{max}-\Delta V\Longrightarrow\Delta V=V_{max}\left[ 1-e^{-\frac{T}{\tau}}\right]
@@ -287,4 +295,26 @@ Si sono quindi misurati sperimentalmente le tensioni di ronzio tramite l'oscillo
 \end{circuitikz}
    \caption{Circuito stabilizzatore}
     \label{fig: Stabilizzatore}
+\end{figure}
+
+\subsection{3.4}
+In quest'esperienza si è studiato il comportamento di un alimentatore stabilizzzato realizzato con un diodo Zener.\\
+Lo schema circuitale è quello in figura \ref{fig: Stabilizzatore Zener}.\\
+Il principio di funzionamento è basato sul fatto che il diodo Zener polarizzato inversamente, una volta raggiunta la tensione di Zener, mantiene costante la tensione ai suoi capi, sfruttando l'effetto Zener.\\
+Si è quindi montato il circuito in figura \ref{fig: Stabilizzatore Zener} con $V_g=10\unit{\V}$ alla frequenza di $1\unit{\kHz}$.
+Si è scelto una $R_z=$
+\begin{figure}
+    \centering
+    \begin{circuitikz}[american, voltage shift=0.5]
+        \draw
+        (0,0) to [voltage source,v^=$V_g$,invert](0,3)
+        to [R,l=$R_z$](4,3)
+        to [zzDo,invert](4,0)
+        to [short,-](0,0);
+        \draw (4,3) to [short,-](6,3)
+        to [R,l=$R_L$,v^=$V_{out}$](6,0)
+        to [short,-](4,0);
+    \end{circuitikz}
+    \caption{Circuito stabilizzatore Zener}
+    \label{Stabilizzatore Zener}
 \end{figure}
